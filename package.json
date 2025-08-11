@@ -1,0 +1,42 @@
+{
+  "name": "@fastpix/react-native-video-data",
+  "version": "1.0.0",
+  "author": "FastPix, Inc",
+  "license": "MIT",
+  "description": "FastPix React Native Video Data SDK for real-time monitoring and analytics of video playback on Android and iOS.",
+  "main": "src/index.js",
+  "files": [
+    "src/**/*"
+  ],
+  "peerDependencies": {
+    "react": "^18.1.0 || ^19.0.0",
+    "react-native": ">=0.72.0"
+  },
+  "dependencies": {
+    "@fastpix/video-data-core": "^1.0.4",
+    "@react-native-async-storage/async-storage": "^2.2.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  },
+  "scripts": {
+    "format": "prettier --write \"src/**/*.js\""
+  },
+  "keywords": [
+    "fastpix analytics",
+    "fastpix video data",
+    "FastPix",
+    "video analytics",
+    "react native video analytics",
+    "react native video SDK",
+    "react native video monitoring",
+    "mobile video analytics",
+    "real-time video monitoring",
+    "video playback metrics",
+    "streaming analytics",
+    "QoE metrics",
+    "video performance monitoring",
+    "iOS video analytics",
+    "Android video analytics"
+  ]
+}
