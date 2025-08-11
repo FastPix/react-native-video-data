@@ -350,7 +350,7 @@ reportBandwidth={true}
 
 - [Homepage](https://www.fastpix.io/)
 - [Dashboard](https://dashboard.fastpix.io/)
-- [GitHub](https://github.com/FastPix/react-native-video-data-sdk)
+- [GitHub](https://github.com/FastPix/react-native-video-data)
 - [API Reference](https://docs.fastpix.io/reference/on-demand-overview)
 
 # Detailed Usage:
