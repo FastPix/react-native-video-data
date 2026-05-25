@@ -1,5 +1,23 @@
 import React, { useEffect, useRef } from "react";
-import fastpixMetrix from "@fastpix/video-data-core";
+import fastpixMetrixImport from "@fastpix/video-data-core";
+
+const fastpixMetrix =
+  fastpixMetrixImport?.utilityMethods
+    ? fastpixMetrixImport
+    : fastpixMetrixImport?.default ?? fastpixMetrixImport;
+
+console.log(
+  "[fastpix-rn] module-load raw=",
+  typeof fastpixMetrixImport,
+  "raw-keys=",
+  fastpixMetrixImport ? Object.keys(fastpixMetrixImport).join(",") : "(null)",
+  "resolved-utilityMethods=",
+  typeof fastpixMetrix?.utilityMethods,
+  "buildUUID=",
+  typeof fastpixMetrix?.utilityMethods?.buildUUID,
+  "configure=",
+  typeof fastpixMetrix?.configure,
+);
 
 const FASTPIX_VIEWER_ID_KEY = "fastpix_viewer_id";
 const FASTPIX_SESSION_ID_KEY = "session_id";
@@ -115,9 +133,23 @@ export function fastpixReactNativeVideo(VideoComponent) {
       props.progressUpdateInterval = 250;
     }
 
+    const isDebug = () => props?.fastpixData?.debug === true;
+    const debugLog = (...args) => {
+      if (isDebug()) console.log("[fastpix-rn]", ...args);
+    };
+
     const dispatchEvent = (eventType, data) => {
       if (playerIdToken.current.token) {
+        debugLog(
+          "dispatch",
+          eventType,
+          "token=",
+          playerIdToken.current.token,
+          data ? JSON.stringify(data).slice(0, 200) : "",
+        );
         fastpixMetrix.dispatch(playerIdToken.current.token, eventType, data);
+      } else {
+        debugLog("dispatch:SKIPPED no-token", eventType);
       }
     };
 
@@ -308,8 +340,17 @@ export function fastpixReactNativeVideo(VideoComponent) {
         dispatchEvent("destroy");
       }
 
+      const configuredWorkspaceId = props?.fastpixData?.data?.workspace_id;
       playerIdToken.current.token =
+        configuredWorkspaceId ||
         fastpixMetrix.utilityMethods.generateIdToken();
+      debugLog(
+        "configure tokenId=",
+        playerIdToken.current.token,
+        "(from workspace_id=",
+        configuredWorkspaceId || "(none, fell back to random)",
+        ")",
+      );
 
       const fastpixConfig = createFastpixConfig({
         props,
@@ -319,6 +360,18 @@ export function fastpixReactNativeVideo(VideoComponent) {
         sessionId,
         sessionStart,
       });
+      debugLog(
+        "configure config keys=",
+        Object.keys(fastpixConfig).join(","),
+        "data keys=",
+        Object.keys(fastpixConfig.data || {}).join(","),
+        "workspace_id=",
+        fastpixConfig?.data?.workspace_id,
+      );
+      debugLog(
+        "configure beacon URL=",
+        `https://${playerIdToken.current.token}.anlytix.io`,
+      );
 
       fastpixMetrix.configure(playerIdToken.current.token, fastpixConfig);
       dispatchEvent("playerReady");
@@ -327,7 +380,13 @@ export function fastpixReactNativeVideo(VideoComponent) {
     };
 
     useEffect(() => {
-      setupPlayer(props, sourceMetadata.current, playerIdToken);
+      setupPlayer(props, sourceMetadata.current, playerIdToken).catch((err) => {
+        console.log(
+          "[fastpix-rn] setupPlayer THREW:",
+          err?.message ?? String(err),
+          err?.stack ?? "",
+        );
+      });
 
       return () => cleanupPlayer();
     }, []);

@@ -1,6 +1,6 @@
 # FastPix React Native Video SDK – Developer Guide
 
-This SDK simplifies integration with `react-native-video` for **mobile applications**, enabling collection of video playback analytics in React Native environments. The SDK automatically tracks key performance metrics and streams them to the [FastPix dashboard](https://dashboard.fastpix.io) for easy monitoring and analysis.
+This SDK simplifies integration with `react-native-video` for **mobile applications**, enabling collection of video playback analytics in React Native environments. The SDK automatically tracks key performance metrics and streams them to the [FastPix dashboard](https://dashboard.fastpix.com) for easy monitoring and analysis.
 
 ## Key Features
 
@@ -17,7 +17,7 @@ This SDK simplifies integration with `react-native-video` for **mobile applicati
   Configure the SDK to suit your specific analytics and monitoring requirements.
 
 - **Centralized Dashboard**  
-   Analyze and visualize video performance using the [FastPix dashboard](https://dashboard.fastpix.io) to drive informed decisions.
+   Analyze and visualize video performance using the [FastPix dashboard](https://dashboard.fastpix.com) to drive informed decisions.
 
 # Prerequisites
 
@@ -37,9 +37,9 @@ Ensure your project meets the following before integrating:
 
 # Getting started with FastPix:
 
-To track and analyze video performance, initialize the FastPix Data SDK with your Workspace key (learn more about [Workspaces here](https://docs.fastpix.io/docs/workspaces)):
+To track and analyze video performance, initialize the FastPix Data SDK with your Workspace key (learn more about [Workspaces here](https://fastpix.com/docs/getting-started/set-up-a-workspace)):
 
-1. **[Access the FastPix Dashboard](https://dashboard.fastpix.io)**: Log in and navigate to the Workspaces section.
+1. **[Access the FastPix Dashboard](https://dashboard.fastpix.com)**: Log in and navigate to the Workspaces section.
 2. **Locate Your Workspace Key**: Copy the Workspace Key for client-side monitoring. Include this key in your JavaScript code on every page where you want to track video performance.
 
 ## Step 1: Install the SDK:
@@ -99,7 +99,7 @@ const FastPixVideo = fastpixReactNativeVideo(Video);
 
 // Video Metadata
 const VIDEO_SOURCE = {
-  uri: "https://stream.fastpix.io/1f3d3b7b-dfc2-4b29-a9ff-9e71c36acc64.m3u8", // Replace with your source Playback URL
+  uri: "https://stream.fastpix.com/{PLAYBACK_ID}.m3u8", // Replace with your source Playback URL
   title: "My Video",
   id: "your-video-id",
   poster: "https://placehold.co/600x400/000000/FFF?text=FastPix+Demo",
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
 });
 ```
 
-For Enhanced Tracking, Check out the [user-passable metadata](https://docs.fastpix.io/docs/user-passable-metadata-1) documentation to see the metadata supported by FastPix. You can use custom metadata fields like `custom_1` to `custom_10` for your business logic, giving you the flexibility to pass any required values. Named attributes, such as `video_title` and `video_id`, can be passed directly as they are.
+For Enhanced Tracking, Check out the [user-passable metadata](https://fastpix.com/docs/working-with-video-data/pass-custom-metadata-to-metrics) documentation to see the metadata supported by FastPix. You can use custom metadata fields like `custom_1` to `custom_10` for your business logic, giving you the flexibility to pass any required values. Named attributes, such as `video_title` and `video_id`, can be passed directly as they are.
 
 ## Step 5: Advanced Customization
 
@@ -348,11 +348,11 @@ reportBandwidth={true}
 
 # References
 
-- [Homepage](https://www.fastpix.io/)
-- [Dashboard](https://dashboard.fastpix.io/)
+- [Homepage](https://www.fastpix.com/)
+- [Dashboard](https://dashboard.fastpix.com/)
 - [GitHub](https://github.com/FastPix/react-native-video-data)
-- [API Reference](https://docs.fastpix.io/reference/on-demand-overview)
+- [API Reference](https://fastpix.com/docs/product-os-api/overview)
 
 # Detailed Usage:
 
-For more detailed steps and advanced usage, please refer to the official [FastPix Documentation](https://docs.fastpix.io/docs/monitor-react-native-video).
+For more detailed steps and advanced usage, please refer to the official [FastPix Documentation](https://fastpix.com/docs/ios-and-cross-platform-players/monitor-react-native).

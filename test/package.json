@@ -1,0 +1,26 @@
+{
+  "name": "fastpix-rn-video-data-demo",
+  "version": "0.0.1",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "ios": "expo run:ios",
+    "android": "expo run:android",
+    "prebuild": "expo prebuild --clean"
+  },
+  "dependencies": {
+    "@fastpix/react-native-video-data": "file:..",
+    "@react-native-async-storage/async-storage": "^2.2.0",
+    "expo": "^51.0.0",
+    "expo-build-properties": "^56.0.14",
+    "expo-dev-client": "~4.0.0",
+    "expo-status-bar": "~1.12.0",
+    "react": "18.2.0",
+    "react-native": "0.74.5",
+    "react-native-video": "^6.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.24.0"
+  }
+}
